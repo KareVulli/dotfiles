@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+pgrep -x "wf-recorder" && pkill -INT -x wf-recorder && notify-send -t 1000 "Finished Recording" && exit 0
+
+area=$(slurp)
+
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+fileName=$(date '+%Y-%m-%d %H-%M-%S').mp4
+
+notify-send -t 1000 "Recording to $fileName"
+
+wf-recorder -g "$area" -f "$HOME/Videos/screen-recordings/$fileName"

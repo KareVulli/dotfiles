@@ -1,0 +1,239 @@
+{
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+
+  "layer": "top",
+  "position": "top",
+  //"height": 40,
+
+  "margin-left": 0,
+  "margin-top": 0,
+  "margin-bottom": 0,
+  "margin-right": 0,
+
+  "spacing": 5,
+
+  "modules-left": [
+    // "custom/rofi",
+    "hyprland/workspaces",
+    // "hyprland/submap",
+    // "temperature",
+    "hyprland/window"
+    // "idle_inhibitor"
+    // "mpd"
+    // "custom/spotify"
+  ],
+  "modules-center": [
+    "clock"
+    // "custom/pacman"
+    // "custom/weather"
+    // "custom/gammastep"
+  ],
+  "modules-right": [
+    // "backlight",
+    "custom/task",
+    "custom/camera",
+    "custom/vpn",
+    // "network",
+    "memory",
+    // "cpu",
+    // "battery",
+    "wireplumber",
+    "hyprland/language",
+    // "custom/screenshot_t",
+    "tray",
+    "custom/power"
+  ],
+
+  // -------------------------------------------------------------------------
+  // Modules
+  // -------------------------------------------------------------------------
+
+  "custom/screenshot_t": {
+    "format": " ",
+    "on-click": "~/.config/hypr/scripts/screenshot_full",
+    "on-click-right": "~/.config/hypr/scripts/screenshot_area"
+  },
+
+  "temperature": {
+    // "thermal-zone": 1,
+    "interval": 4,
+    //"hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon9/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": " {temperatureC}°C",
+    "format-critical": "  {temperatureC}°C",
+    "format": "{icon}  {temperatureC}°C",
+    "format-icons": ["", "", ""],
+    "max-length": 7,
+    "min-length": 7,
+    "on-click": "xsensors"
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": "\uefc5 {used:0.2f} / {total:0.0f} GB",
+    "on-click": "alacritty -e btop"
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-alt": "{percent}% {icon}",
+    "format-alt-click": "click-right",
+    //"format-icons": ["", ""],
+    "format-icons": ["", ""],
+    "on-scroll-down": "brightnessctl s 5%-",
+    "on-scroll-up": "brightnessctl s +5%"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "tooltip": "true"
+  },
+
+  "custom/pacman": {
+    "format": "<big>􏆲</big>  {}",
+    "interval": 3600, // every hour
+    "exec": "checkupdates | wc -l", // # of updates
+    "exec-if": "exit 0", // always run; consider advanced run conditions
+    "on-click": "alacritty -e 'paru'; pkill -SIGRTMIN+8 waybar", // update system
+    "signal": 8,
+    "max-length": 5,
+    "min-length": 3
+  },
+
+  "custom/spotify": {
+    "exec": "~/.config/waybar/mediaplayer.py --player spotify",
+    "format": "{}  ",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+
+  "custom/power": {
+    "format": " 󰐥 ",
+    "tooltip": false,
+    "on-click": "wlogout"
+  },
+
+  "clock": {
+    "format": "\uf017 {:%H:%M  \udb80\udced %e %b}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "today-format": "<b>{}</b>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 4,
+      "format": {
+        "today": "<span color='#82dccc'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+
+  "cpu": {
+    "interval": 1,
+    // "format": " {}%", // Icon: microchip
+    "format": "\uf2db {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+    "max-length": 13,
+    "min-length": 13
+  },
+
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+    "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+    "sort-by-number": true,
+    "active-only": false
+  },
+
+  "hyprland/window": {
+    "max-length": 100,
+    "separate-outputs": false
+  },
+
+  "wireplumber": {
+    "on-click": "pavucontrol",
+    "on-click-right": "amixer sset Master toggle 1>/dev/null",
+    //on-click: "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+    //on-scroll-down: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04+";
+    //on-scroll-up: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04-";
+    "format": "<span foreground='#fab387'>{icon}</span>{volume}%",
+    "format-muted": " ",
+    "format-source": "",
+    "format-source-muted": "",
+    //"format-muted": "<span foreground='#fab387'> </span>",
+    //"format-icons": [ "<span foreground='#fab387'></span>" ]
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": [" ", " ", " "]
+    }
+  },
+
+  "hyprland/language": {
+    "format": "<span foreground='#aaa' rise='-1000'></span> {shortDescription}",
+    "on-click": "hyprctl switchxkblayout all next -q"
+  },
+
+  "custom/vpn": {
+    "interval": 3,
+    "format": "<span foreground='#fab387'>{icon}</span> {text}",
+    "format-icons": {
+      "on": "\udb83\udc53",
+      "off": "\udb83\udc5f"
+    },
+    "return-type": "json",
+    "exec": "ip add show | grep -qF wg0 && echo '{\"text\": \"on\", \"alt\": \"on\"}' || echo '{\"text\": \"off\", \"alt\": \"off\"}'",
+    "on-click": "~/.config/waybar/modules/toggle-vpn.sh"
+  },
+
+  "custom/camera": {
+    "interval": 5,
+    "format": "\uf030",
+    "exec": "systemctl --user status camera.service &>/dev/null && echo 'on' || echo ''",
+    "hide-empty-text": true,
+    "on-click": "systemctl --user stop camera.service"
+  },
+
+  "custom/task": {
+    "interval": 1,
+    "format": "<span weight='bold'>Current task:</span> {text}",
+    "exec": "cat /home/karevulli/projects/super-productivity-waybar/current-task.txt"
+  },
+
+  "tray": {
+    "icon-size": 15,
+    "spacing": 5
+  },
+
+  "network": {
+    "format": "\udb80\uddda {bandwidthDownBits} \udb81\udd52 {bandwidthUpBits}",
+    "interval": 2,
+    "format-disconnected": "",
+    "tooltip-format": "{ifname} \udb80\uddda {bandwidthDownBits} \udb81\udd52 {bandwidthUpBits}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  }
+}
