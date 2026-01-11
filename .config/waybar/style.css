@@ -50,7 +50,6 @@ label.module {
 #network,
 #pulseaudio,
 #wireplumber,
-#custom-media,
 #mode,
 #idle_inhibitor,
 #mpd,
@@ -63,6 +62,7 @@ label.module {
 #custom-power-menu,
 #custom-vpn,
 #custom-camera,
+#custom-theme,
 #custom-tray-button,
 #custom-power,
 #custom-task {
@@ -90,7 +90,7 @@ label.module {
 
 #workspaces button {
     color: @foreground;
-    padding: 0px 5px;  /* Adjusted padding to reduce height */
+    padding: 0px 8px;  /* Adjusted padding to reduce height */
     border-radius: 2px;
     transition: all 0.2s ease-in-out;
 }
