@@ -1,0 +1,8 @@
+[Unit]
+Description=Webcam powered by scrcpy
+
+[Service]
+ExecStart=-scrcpy --video-source=camera --no-audio --camera-size=1920x1080 --capture-orientation=180 --print-fps --camera-fps 60 --no-playback --no-window --v4l2-sink=/dev/video2
+
+[Install]
+WantedBy=default.target

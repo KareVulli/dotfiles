@@ -1,0 +1,12 @@
+[Unit]
+Description=Autopaste Service for Smile
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/home/karevulli/bin/smile-autopaste.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

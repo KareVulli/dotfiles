@@ -1,0 +1,8 @@
+[Unit]
+Description=Periodically check if Wireguard is up
+
+[Timer]
+OnCalendar=*:*:0/30
+
+[Install]
+WantedBy=timers.target

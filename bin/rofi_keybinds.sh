@@ -44,7 +44,7 @@ filtered_entries=$(echo $updated_json | jq -r '.[] | select(.submap == "" and .d
     "\(.modmask)-\(.key) \"\(.description)\": \(.dispatcher) \(.arg)"')
 
 # Show options in rofi and get user selection
-selected=$(echo "$filtered_entries" | rofi -dmenu)
+selected=$(echo "$filtered_entries" | rofi -dmenu -p 'keybinds')
 
 # Extract dispatcher and arg from the selected entry
 dispatcher=$(echo "$selected" | sed -E 's/.*: ([^ ]+) .*/\1/')
