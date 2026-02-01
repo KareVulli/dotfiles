@@ -219,7 +219,8 @@
 
   "hyprland/language": {
     "format": "<span rise='-1000'></span> {shortDescription}",
-    "on-click": "hyprctl switchxkblayout all next -q"
+    "on-click": "hyprctl switchxkblayout all next -q",
+    "keyboard-name": "kbdfans-og60-keyboard"
   },
 
   "custom/vpn": {
