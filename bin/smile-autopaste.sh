@@ -6,6 +6,6 @@ dbus-monitor --session "type='signal',interface='it.mijorus.smile',member='Copie
 while read -r line; do
     if echo "$line" | grep -q "member=CopiedEmojiBroadcast"; then
         # Trigger paste
-        wlrctl keyboard type 'v' modifiers CTRL
+        wtype -M ctrl -k v -m ctrl
     fi
 done

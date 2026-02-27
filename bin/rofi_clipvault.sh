@@ -38,7 +38,8 @@ EOF
     echo "$list" | gawk "$prog"
 }
 
-
+echo -en "\000keep-selection\037true\n"
+echo -en "\000keep-filter\037true\n"
 
 case $ROFI_RETV in
     # Display entries on startup
@@ -50,7 +51,7 @@ case $ROFI_RETV in
     1)
         if [ ! "$ROFI_INFO" = "" ]; then
             clipvault get "$ROFI_INFO" | wl-copy
-            coproc ( wlrctl keyboard type 'v' modifiers CTRL )
+            coproc ( wtype -M ctrl -k v -m ctrl )
         fi
         exit
         ;;
