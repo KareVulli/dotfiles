@@ -1,0 +1,36 @@
+window {
+    background-color: rgba (0, 0, 0, 0)
+}
+
+/* Outer bar container, takes all the window width/height */
+#outer-box {
+	margin: 0px;
+}
+
+/* Inner bar container, surrounds buttons */
+#inner-box {
+	background-color: @theme_base_color;
+	border-radius: 0px;
+	border-style: none;
+	border-width: 0px;
+	padding: 5px;
+	margin: 5px;
+}
+
+image {
+    /* color: @theme_text_color; */
+}
+
+button {
+	/* background: @theme_bg_color;
+	border: 1px solid transparent;
+	box-shadow: none; */
+    padding-left: 10px;
+	padding-right: 10px;
+	margin: 2px;
+}
+
+
+button:hover {
+	/* border-color: @theme_selected_bg_color; */
+}

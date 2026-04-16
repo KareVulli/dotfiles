@@ -146,7 +146,7 @@
   "custom/power": {
     "format": " 󰐥 ",
     "tooltip": false,
-    "on-click": "wlogout"
+    "on-click": "nwg-bar -a end -f -p top -mt 31 -i 24"
   },
 
   "clock": {
