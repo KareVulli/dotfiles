@@ -1,0 +1,9 @@
+{
+  "commands": [
+    {
+      "name": "dk",
+      "command": "systemctl is-active --quiet docker && (systemctl stop docker docker.socket && notify-send \"Docker stopped\" -t 2000)  || (systemctl start docker && notify-send \"Docker started\" -t 2000) > /dev/null 2>&1",
+      "icon": "brand-docker"
+    }
+  ]
+}
